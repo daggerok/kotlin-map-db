@@ -1,5 +1,8 @@
 package daggerok
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import org.mapdb.DB
@@ -7,6 +10,8 @@ import org.mapdb.DBMaker
 import org.mapdb.Serializer
 import java.nio.file.Paths
 import java.util.*
+import java.util.concurrent.TimeUnit
+import javax.xml.bind.JAXBElement
 
 class MainKtTest {
 
@@ -38,10 +43,16 @@ class MainKtTest {
         .valueSerializer(Serializer.STRING)
         .createOrOpen()
 
-    map["ololo"] = "trololo"
-    map["trololo"] = "ololo"
+    GlobalScope.launch {
+      for (i in 1..1000) {
+        map["$i-ololo"] = "$i-trololo"
+        map["$i-trololo"] = "$i-ololo"
+        db.commit()
+      }
+    }
 
-    db.commit()
-    assertThat(map).hasSize(2)
+    assertThat(map).hasSizeLessThan(2000)
+    TimeUnit.SECONDS.sleep(10)
+    assertThat(map).hasSize(2000)
   }
 }
