@@ -4,11 +4,13 @@ pluginManagement {
     mavenCentral()
   }
   val kotlinVersion: String by extra
+  val reckonGradlePluginVersion: String by extra
   val shadowGradlePluginVersion: String by extra
   val versionsGradlePluginVersion: String by extra
   plugins {
     kotlin("jvm") version kotlinVersion
-    kotlin("plugin.spring") version kotlinVersion
+    // kotlin("plugin.spring") version kotlinVersion
+    id("org.ajoberstar.reckon") version reckonGradlePluginVersion
     id("com.github.ben-manes.versions") version versionsGradlePluginVersion
     id("com.github.johnrengelman.shadow") version shadowGradlePluginVersion
   }
