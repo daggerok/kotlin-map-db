@@ -49,7 +49,11 @@ class MainKtTest {
     }
 
     assertThat(map).hasSizeLessThan(2000)
-    TimeUnit.SECONDS.sleep(10)
+
+    val defaultValue = "10"
+    val sleep = System.getenv().getOrDefault("SLEEP", System.getProperty("sleep", defaultValue)).toLong()
+    TimeUnit.SECONDS.sleep(sleep)
+
     assertThat(map).hasSize(2000)
   }
 }

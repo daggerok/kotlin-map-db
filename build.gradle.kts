@@ -85,6 +85,7 @@ allprojects {
       useJUnitPlatform {
         includeEngines("junit-jupiter", "junit-vintage")
       }
+      systemProperties["sleep"] = System.getProperty("sleep") ?: "10"
       testLogging {
         showCauses = true
         showExceptions = true
