@@ -30,7 +30,7 @@ jobs:
         with:
           #build-root-directory: .
           gradle-version: ${{ matrix.gradle-version }}
-          arguments: clean build -S
+          arguments: clean build -S -Dsleep=35
       - name: Test gradle app
         shell: bash
         run: java -Dfile.encoding="UTF-8" -jar $GITHUB_WORKSPACE/build/libs/*-all.jar
@@ -64,7 +64,7 @@ jobs:
         with:
           build-root-directory: .
           gradle-version: ${{ matrix.gradle-version }}
-          arguments: -S
+          arguments: -S -Dsleep=25
       - name: Test gradle app
         shell: cmd
         run: |
