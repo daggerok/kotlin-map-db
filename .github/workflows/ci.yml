@@ -4,7 +4,7 @@ jobs:
   build-on-unix:
     strategy:
       matrix:
-        java: [11]
+        java: [8,11]
         nodejs-version: [12]
         python-version: [3.8]
         gradle-version: [6.2]
