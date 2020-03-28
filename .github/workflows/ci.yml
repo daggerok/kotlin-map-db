@@ -69,4 +69,4 @@ jobs:
         shell: cmd
         run: |
           @chcp 65001>nul
-          java -Dfile.encoding="UTF-8" -jar %GITHUB_WORKSPACE%\build\libs\kotlin-map-db-1.0.1-SNAPSHOT-all.jar
+          java -Dfile.encoding="UTF-8" -jar %GITHUB_WORKSPACE%\build\libs\kotlin-map-db-0.1.0-SNAPSHOT-all.jar
