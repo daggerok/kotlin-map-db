@@ -4,9 +4,11 @@ import org.mapdb.DBMaker
 import org.mapdb.Serializer
 import java.nio.file.Files
 import java.nio.file.Paths
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 fun main() {
+  // val dbFilePath = Paths.get(".", "build", UUID.randomUUID().toString(), "my.db").normalize().toAbsolutePath().toFile()
   val dbFilePath = Paths.get(".", "build", "my.db").normalize().toAbsolutePath().toFile()
   println("making sure $dbFilePath is exist")
   Files.createDirectories(Paths.get(dbFilePath.parent))

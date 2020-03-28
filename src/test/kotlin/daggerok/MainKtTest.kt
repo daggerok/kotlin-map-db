@@ -26,7 +26,6 @@ class MainKtTest {
         .fileLockDisable()
         .transactionEnable()
         .fileMmapEnableIfSupported()
-        .closeOnJvmShutdownWeakReference()
         .closeOnJvmShutdown()
         .make()
   }
