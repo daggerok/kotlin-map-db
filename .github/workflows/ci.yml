@@ -5,10 +5,10 @@ jobs:
     strategy:
       matrix:
         java: [8,11]
-        gradle-version: [6.2]
+        gradle-version: [6.3]
         os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
-    name: unix ${{ matrix.os }} java ${{ matrix.java }}
+    name: ${{ matrix.os }} java ${{ matrix.java }}
     steps:
       - name: Git clone
         uses: actions/checkout@v1
@@ -37,12 +37,12 @@ jobs:
   build-on-windows:
     strategy:
       matrix:
-        java: [11]
+        java: [11,1.8]
         nodejs-version: [12]
-        gradle-version: [6.2]
+        gradle-version: [6.3]
         os: [windows-latest]
     runs-on: ${{ matrix.os }}
-    name: windows ${{ matrix.os }} java ${{ matrix.java }}
+    name: ${{ matrix.os }} java ${{ matrix.java }}
     steps:
       - name: Git clone
         uses: actions/checkout@v1
