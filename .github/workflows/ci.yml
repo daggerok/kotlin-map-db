@@ -16,6 +16,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle
+          key: ${{ matrix.gradle-version }}-${{ matrix.os }}-gradle-cache
+          restore-keys: |
+            ${{ matrix.gradle-version }}-${{ matrix.os }}-gradle-cache-
       - name: Build gradle app
         uses: eskatos/gradle-command-action@v1
         env:
@@ -27,13 +34,6 @@ jobs:
       - name: Test gradle app
         shell: bash
         run: java -Dfile.encoding="UTF-8" -jar $GITHUB_WORKSPACE/build/libs/*-all.jar
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle
-          key: ${{ matrix.gradle-version }}-${{ matrix.os }}-gradle-cache
-          restore-keys: |
-            ${{ matrix.gradle-version }}-${{ matrix.os }}-gradle-cache-
   build-on-windows:
     strategy:
       matrix:
@@ -50,6 +50,13 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle
+          key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
+          restore-keys: |
+            java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-
       - name: Build gradle app
         uses: eskatos/gradle-command-action@v1
         env:
@@ -63,10 +70,3 @@ jobs:
         run: |
           @chcp 65001>nul
           java -Dfile.encoding="UTF-8" -jar %GITHUB_WORKSPACE%\build\libs\kotlin-map-db-1.0.0-SNAPSHOT-all.jar
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle
-          key: java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-${{ hashFiles('**/.gradle/**') }}
-          restore-keys: |
-            java-${{ matrix.java }}-${{ runner.os }}-${{ matrix.os }}-gradle-
