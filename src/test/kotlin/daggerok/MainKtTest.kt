@@ -2,7 +2,6 @@ package daggerok
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import org.mapdb.DB
@@ -11,7 +10,6 @@ import org.mapdb.Serializer
 import java.nio.file.Paths
 import java.util.*
 import java.util.concurrent.TimeUnit
-import javax.xml.bind.JAXBElement
 
 class MainKtTest {
 
